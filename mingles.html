@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Desbravador Front-End</title>
+        <meta charset="UTF-8">
+        <link href="http://www.desbravador.com.br/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- CSS -->
+        <!--Icones-->
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!--Calendario-->
+        <link href="libraries/datepicker/css/datepicker3.css" rel="stylesheet" type="text/css" />
+        <!--Material Design Framework-->
+        <link href="material/css/mui.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/material.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <!--Modal, Close button e Embeded-->
+        <link href="material/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- Datepicker-->
+        <link href="libraries/datepicker/css/datepicker3.css" rel="stylesheet" type="text/css" />
+
+        <!--JavaScript Primario-->
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <!--Material Design-->
+        <script src="material/js/mui.min.js"></script>
+        <script src="js/material.min.js"></script>
+        <!--Manter elementos fixos no topo-->
+        <script src="js/jquery-scrolltofixed-min.js" type="text/javascript"></script> 
+        <!--Componentes bootstrap (Modal e Embeded)-->
+        <script src="material/js/bootstrap.min.js" type="text/javascript"></script>
+        <!--Principais codigos javascritp que fazem a interação da pagina-->
+        <script src="js/global.js" type="text/javascript"></script>
+
+
+    </head>
+    <body>
+        <form>
+            <!-- Simple header with fixed tabs. -->
+            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+                 mdl-layout--fixed-tabs">
+                <header class="mdl-layout__header">
+                    <div class="mdl-layout__header-row">
+                        <!-- Title -->
+                        <span class="mdl-layout-title">Desbravador</span>
+                    </div>
+                    <!-- Tabs -->
+                    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                        <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Basic Information</a>
+                        <a href="#fixed-tab-2" class="mdl-layout__tab">Address</a>
+                        <a href="#fixed-tab-3" class="mdl-layout__tab">Others</a>
+                    </div>
+                </header>
+                <div class="mdl-layout__drawer">
+                    <span class="mdl-layout-title">Menu</span>
+                    <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link" href="mindex.html">Portuguese</a>
+                        <a class="mdl-navigation__link" href="mingles.html">English</a>
+                        <a class="mdl-navigation__link" href="mespanhol.html">Spanish</a>
+                        <div class="mui-divider"></div>
+                        <a class="mdl-navigation__link" href="ingles.html">Boostrap</a>
+                        <a class="mdl-navigation__link" href="mingles.html">Material</a>
+                    </nav>
+                </div>
+
+                <main class="mdl-layout__content">
+                    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+                        <div class="page-content">
+                            <div class="mdl-grid">
+
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" id="nome" name="nome" type="text" onblur = "validaNome(this.value);" required="" />
+                                        <label class="mdl-textfield__label" for="sample3">First Name</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" id="sobrenome" name="sobrenome" type="text" onblur = "validaNome(this.value);" required="" />
+                                        <label class="mdl-textfield__label" for="sobrenome">Last Name</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" id="email" name="email" type="email" onblur="validacaoEmail(this.value)"  required="" />
+                                        <label class="mdl-textfield__label" for="email">E-mail</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input"  id="telefone" name="telefone" type="text" onkeypress="return txtBoxFormat(this, '(99) 9999-9999', event);" maxlength="14" onblur="validaTelefone(this.value);" required=""/>
+                                        <label class="mdl-textfield__label" for="telefone">Phone</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" data-provide="datepicker" data-date-format="dd/mm/yyyy" name="nascimento" type="text" id="nascimento" onkeypress="return txtBoxFormat(this, '99/99/9999', event);" maxlength="10" onblur="calcular()" required="" />
+                                        <label class="mdl-textfield__label" for="nascimento">Date of birth</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                                            <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="feminino" checked />
+                                            <span class="mdl-radio__label">Female</span>
+                                        </label>
+                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                                            <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="masculino" />
+                                            <span class="mdl-radio__label">Male</span>
+                                        </label>
+                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                                            <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="outro" />
+                                            <span class="mdl-radio__label">Other</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <select id="nacionalidade" name="nacionalidade" class="mdl-textfield__input" required="">
+                                            <option value=""></option>
+                                            <option value="Brasileiro">Brazilian</option>
+                                            <option value="Russo">Russian</option>
+                                            <option value="Bulgário">Bulgarian</option>
+                                            <option value="Americano">American</option>
+                                            <option value="Mexicano">Mexican</option>
+                                            <option value="Canadense">Canadian</option>
+                                            <option value="Boliviano">Bolivian</option>
+                                            <option value="Italiano">Italian</option>
+                                            <option value="Alemão">German</option>
+                                            <option value="Português">Portuguese</option>
+                                            <option value="Espanhol">Spanish</option>
+                                            <option value="Espanhol">Other</option>
+                                        </select>
+
+                                        <label class="mdl-textfield__label" for="nacionalidade">Nacionality</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input id="cpf" name="cpf" onblur="CPF(this.value)" maxlength="11" type="text" class="mdl-textfield__input" required="">
+                                        <label class="mdl-textfield__label" for="cpf">CPF</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input id="identidade" name="identidade" type="text" onblur = "validaNome(this.value);" class="mdl-textfield__input" required="">
+                                        <label class="mdl-textfield__label" for="identidade">Identity</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input id="identidade" name="orgao" type="text" onblur = "validaNome(this.value);" class="mdl-textfield__input" required="">
+                                        <label class="mdl-textfield__label" for="orgao">Organ Dispatcher</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input id="profissao" name="profissao" type="text" onblur = "validaNome(this.value);" class="mdl-textfield__input" required="">
+                                        <label class="mdl-textfield__label" for="profissao">Job</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <label class="mdl-textfield__label" for="civil">Marital Status</label>
+
+                                        <select id="civil" name="civil" class="mdl-textfield__input" required="">
+                                            <option value=""></option>
+                                            <option value="solteiro">Single</option>
+                                            <option value="casado">Married</option>
+                                            <option value="separado">Separeted</option>
+                                            <option value="divorciado">Divorced</option>
+                                            <option value="viuvo">Widower</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+                        <div class="page-content">
+                            <div class="mdl-grid">
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <label class="mdl-textfield__label" for="endereco"></label>  
+                                        <input id="endereco" name="endereco" type="text"  onblur = "validaNome(this.value);" class="mdl-textfield__input" required="" data-toggle="popover" data-placement="top" data-trigger="focus" >
+                                    </div>
+                                    <div class="mdl-tooltip mdl-tooltip--large" for="endereco">
+                                        Find what you are looking for!<br/>
+                                        You can search for zip code or a name of place to get the address, when you pick one other informations will appear below!
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <div id="results" class=""></div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <label class="mdl-textfield__label" for="cep">Zip Code</label>  
+                                        <input name="cep" type="text"  id="cep" onkeypress="return txtBoxFormat(this, '99999-999', event);" maxlength="9"  class="mdl-textfield__input"  data-toggle="popover" data-placement="top" data-trigger="focus">
+                                    </div>
+
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <!-- Colored raised button -->
+                                    <button id="consulta" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-toggle="modal" data-target="#myModal" >
+                                        <i class="fa fa-search"></i> Search for a Zip Code
+                                    </button>
+                                    <div class="mdl-tooltip mdl-tooltip--large" for="consulta">
+                                        Search for a Zip Code directly from the Brazian Post Office site
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+
+                                        <label class="mdl-textfield__label" for="bairro">Neighborhood</label>  
+                                        <input id="bairro" name="bairro" type="text"  onblur = "validaNome(this.value);" class="mdl-textfield__input" >
+                                    </div>
+                                </div>
+                                <!-- Text input-->
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <label class="mdl-textfield__label" for="rua">Street</label>  
+                                        <input id="rua" name="rua" type="text"  onblur = "validaNome(this.value);" class="mdl-textfield__input" >
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <label class="mdl-textfield__label" for="numero">Number</label>  
+
+                                        <input id="numero" name="numero" type="text"class="mdl-textfield__input" >
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <label class="mdl-textfield__label" for="complemento">Complement</label>  
+
+                                        <input id="complemento" name="complemento" type="text"  class="mdl-textfield__input" >
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                    </section>
+                    <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+                        <div class="page-content">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <textarea class="mdl-textfield__input" type="text" rows= "8" id="sample5" ></textarea>
+                                <label class="mdl-textfield__label" for="sample5">Observations</label>
+                            </div>
+                        </div>
+                    </section>
+
+
+                </main>
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+
+                        <button id="salvar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" >
+                            Send
+                        </button>
+                        <div class="mdl-tooltip mdl-tooltip--large" for="salvar">
+                            Save and Send
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+
+        <!-- Modal -->
+        <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Search on Brazian Post Office</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="http://m.correios.com.br/movel/buscaCep.do"></iframe>
+                        </div>
+                    </div>                            
+                </div>
+            </div>
+        </div>
+        <!--Javascript Secundario-->
+        <!--Carrega os ederenços do google-->
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+        <!--Calendario-->        
+        <script type="text/javascript" src="libraries/datepicker/js/bootstrap-datepicker.js"></script>
+        <!--Validações com o idioma da página local -->
+        <script type="text/javascript" src="js/projetoE.js"></script>
+    </body>
+</html>
